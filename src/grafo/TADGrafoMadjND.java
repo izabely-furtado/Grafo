@@ -15,7 +15,7 @@ import taddic.TADDicEA;
  */
 public class TADGrafoMadjND {
 
-    private final static int N = 64;
+    private final static int N = 80;
     private int[][] mat = new int[N][N];
     private int idGenerator = 0;
     TADDicEA dicVertices = new TADDicEA();
@@ -159,6 +159,26 @@ public class TADGrafoMadjND {
             }
         }
         return aux;
+    }
+    
+    @Override
+    public String toString(){
+    	String retorno = "";
+    	for (int linha = 0; linha < this.mat.length; linha++){
+    		for (int coluna = 0; coluna < this.mat[linha].length; coluna++){
+    			//retorno += this.dicEdges.findElements(this.mat[linha][coluna]) + " ";
+    			int val = this.mat[linha][coluna];
+    			if(val != 0){
+    				Edge aresta = (Edge) this.dicEdges.findElements(val);
+    				retorno += aresta.dado + " ";
+    			}
+    			else {
+    				retorno += this.mat[linha][coluna] + " ";
+    			}
+    		}
+    		retorno += "\n";
+    	}
+    	return retorno;
     }
    
    

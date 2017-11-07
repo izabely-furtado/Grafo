@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafo;
+package antigo;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import grafo.Edge;
+import grafo.Vertice;
 
 /**
  *
@@ -15,7 +18,7 @@ import java.util.List;
  */
 public class GrafoMAdj {
 
-    int mat[][]; // fazer um redimenciona
+    public int mat[][]; // fazer um redimenciona
     // a matriz armazena o id da aresta e nao o valor... peso... enfim
     LinkedList<Vertice> vetV; // transformar em dicionario
     List<Edge> vetA; //transformar em dicionario 
@@ -24,7 +27,7 @@ public class GrafoMAdj {
     List<Integer> deletados;
     
     
-    GrafoMAdj(int quantVertices){
+    public GrafoMAdj(int quantVertices){
         this.vetA = new ArrayList<>();	
         this.vetV = new LinkedList<>();
         this.deletados = new LinkedList<>();
@@ -38,15 +41,15 @@ public class GrafoMAdj {
     }
     
     public void set(int v1, int v2, int a){
-        this.mat[v1][v2] = this.vetA.get(a).id;
+        this.mat[v1][v2] = this.vetA.get(a).getId();
     }
     
     public void setAresta(Edge a){
-        this.vetA.add(a.id, a);
+        this.vetA.add(a.getId(), a);
     }
     
     public void setVetice(Vertice v){
-        if(this.vetV.size() >= v.id){
+        if(this.vetV.size() >= v.getId()){
             this.vetV.add(v);
         }
     }
@@ -57,37 +60,31 @@ public class GrafoMAdj {
     
     public void grauAdjacencia(int v1){
         int[] adj = this.mat[v1];
-        int grau = 0;
         for(int a : adj){
             if(a != 0){
-                grau++;
             }
         }
     }
     
     public void grauEntrada(int v1){
-        int grau = 0;
         for(int[] a : this.mat){
             if(a[v1] != 0){
-                grau++;
             }
         }
     }
     
     public void grauSaida(int v1){
         int[] adj = this.mat[v1];
-        int grau = 0;
         for(int a : adj){
             if(a != 0){
-                grau++;
             }
         }
     }
 
     public int existe(int v1){
         for (Vertice v : this.vetV){
-            if(v.id == v1){
-                return v.id;
+            if(v.getId() == v1){
+                return v.getId();
             }
         }
         return -1;
@@ -98,12 +95,12 @@ public class GrafoMAdj {
     }
     
     public boolean adjacente(Vertice v1, Vertice v2){
-        return this.mat[v1.id][v2.id] != 0;
+        return this.mat[v1.getId()][v2.getId()] != 0;
     }
     
     public Vertice getVertice(int id){
         for(Vertice v : this.vetV){
-            if(v.id == id){
+            if(v.getId() == id){
                 return v;
             }
         }
@@ -116,7 +113,7 @@ public class GrafoMAdj {
     
     public List<Vertice> adjacenteVertices(Vertice v1){
         List<Vertice> lstAdjacentes = new LinkedList<>();
-        for(int vertice : this.mat[v1.id]){
+        for(int vertice : this.mat[v1.getId()]){
             if(vertice != 0){
                 lstAdjacentes.add(this.getVertice(vertice));
             }
@@ -168,50 +165,50 @@ public class GrafoMAdj {
         return retorno;
     }
     
-    //retorna a partir do vertices pra quais locais pode-se ir diretamente
-    public LinkedList<Vertice> adjacentesVertices(Vertice v){
-        LinkedList<Vertice> lstAdjacentes = new LinkedList<>();
-        for(int coluna = 0; coluna < dicVertices.size(); coluna++){
-            if((this.mat[coluna][v.getId()] != -1) && !deletado(coluna)){
-                Edge aux = (Edge)dicEdiges.finElement(coluna);
-                if(aux != null){
-                    lstAdjacentes.add(aux);
-                }
-            }
-        }
-        return lstAdjacentes;
-    }
-        
-    public LinkedList<Vertice> incidentesVertices(Vertice v){
-        LinkedList<Vertice> lstIncidentes = new LinkedList<>();
-        for(int coluna = 0; coluna < dicEdges.size(); coluna++){
-            if((this.mat[v.getId()][coluna] != -1) && !deletado(coluna)){
-                Edge aux = (Edge)dicEdiges.finElement(this.mat[v.getId()][coluna]);
-                if(aux != null){
-                    lstIncidentes.add(aux);
-                }
-            }
-        }
-        return lstIncidentes;
-    }
-    
-    public LinkedList<Vertice> endVertices(Edge a){
-        LinkedList<Vertice> vertices = null;
-        for(int linha = 0; linha<dicVertices.size(); linha++){
-            for(int coluna = 0; coluna<dicVertices.size(); coluna++){
-                if(mat[linha][coluna] == a.id){
-                    vertices = new LinkedList<>();
-                    vertices.add(this.getVertice(linha)); // (Vertice) dicVertices.findElement(linha);
-                    vertices.add(this.getVertice(coluna));
-                }
-            }
-        }
-        return vertices;
-    }
-    
+//    //retorna a partir do vertices pra quais locais pode-se ir diretamente
+//    public LinkedList<Vertice> adjacentesVertices(Vertice v){
+//        LinkedList<Vertice> lstAdjacentes = new LinkedList<>();
+//        for(int coluna = 0; coluna < dicVertices.size(); coluna++){
+//            if((this.mat[coluna][v.getId()] != -1) && !deletado(coluna)){
+//                Edge aux = (Edge)dicEdiges.finElement(coluna);
+//                if(aux != null){
+//                    lstAdjacentes.add(aux);
+//                }
+//            }
+//        }
+//        return lstAdjacentes;
+//    }
+//        
+//    public LinkedList<Vertice> incidentesVertices(Vertice v){
+//        LinkedList<Vertice> lstIncidentes = new LinkedList<>();
+//        for(int coluna = 0; coluna < dicEdges.size(); coluna++){
+//            if((this.mat[v.getId()][coluna] != -1) && !deletado(coluna)){
+//                Edge aux = (Edge)dicEdiges.finElement(this.mat[v.getId()][coluna]);
+//                if(aux != null){
+//                    lstIncidentes.add(aux);
+//                }
+//            }
+//        }
+//        return lstIncidentes;
+//    }
+//    
+//    public LinkedList<Vertice> endVertices(Edge a){
+//        LinkedList<Vertice> vertices = null;
+//        for(int linha = 0; linha<dicVertices.size(); linha++){
+//            for(int coluna = 0; coluna<dicVertices.size(); coluna++){
+//                if(mat[linha][coluna] == a.getId()){
+//                    vertices = new LinkedList<>();
+//                    vertices.add(this.getVertice(linha)); // (Vertice) dicVertices.findElement(linha);
+//                    vertices.add(this.getVertice(coluna));
+//                }
+//            }
+//        }
+//        return vertices;
+//    }
+//    
     public Vertice verticeOposto(Vertice v, Edge a){
-        for(int coluna = 0; coluna<this.mat[v.id].length; coluna++){
-            if(mat[v.id][coluna] == a.id){
+        for(int coluna = 0; coluna<this.mat[v.getId()].length; coluna++){
+            if(mat[v.getId()][coluna] == a.getId()){
                 return this.getVertice(coluna); // (Vertice) dicVertices.findElement(coluna);
             }
         }
@@ -219,7 +216,7 @@ public class GrafoMAdj {
     }
     
     public boolean existeAdjacente(Vertice v1, Vertice v2){
-        return this.mat[v1.id][v2.id] == -1;
+        return this.mat[v1.getId()][v2.getId()] == -1;
     }
     
 }

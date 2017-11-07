@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafo;
+package antigo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.LinkedList;
 
+import antigo.GrafoMAdj;
+import grafo.Vertice;
 
 /**
  *
@@ -16,9 +19,9 @@ import java.io.FileReader;
 public class TestaGrafo1 {
 
     public static void main(String[] args) throws Exception {
-        TADGrafoMadjND grafo = new TADGrafoMadjND();
+        GrafoMAdj grafo = null;
         boolean acabouVertices = false;
-        //LinkedList<Vertice> lstVertices = new LinkedList<>();
+        LinkedList<Vertice> lstVertices = new LinkedList<>();
         //LinkedList<Edge> lstArestas = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("tpalesmis.txt"))) {
             while (br.ready() && !acabouVertices) {
@@ -27,24 +30,22 @@ public class TestaGrafo1 {
                     acabouVertices = true;
                 } else if (!acabouVertices) {
                     Vertice v = new Vertice();
-                    v.id = Integer.parseInt(linha.split(" ")[0]);
-                    v.dado = linha.split(" ")[1];
-                    //lstVertices.add(v);
-                    //grafo.dicVertices.insertItem(v.id, v.dado);
-                    grafo.insertVertex(v);
+                    v.setId(Integer.parseInt(linha.split(" ")[0]));
+                    v.setDado(linha.split(" ")[1]);
+                    lstVertices.add(v);
                 }
             }
-//            if (acabouVertices) {
-//                grafo = new TADGrafoMadjND(lstVertices.size());
-//            }
+            if (acabouVertices) {
+                grafo = new GrafoMAdj(lstVertices.size());
+            }
             while (br.ready() && acabouVertices) {
                 String linha = br.readLine();
+                if (grafo == null) {
+                    grafo = new GrafoMAdj(lstVertices.size());
+                }
                 int v1 = Integer.parseInt(linha.split(" ")[0]);
                 int v2 = Integer.parseInt(linha.split(" ")[1]);
-                Vertice vertice1 = (Vertice) grafo.dicVertices.findElements(v1);
-                Vertice vertice2 = (Vertice) grafo.dicVertices.findElements(v2);
-                //grafo.mat[v1][v2] = 1;
-                grafo.insertEdge(vertice1, vertice2, 1);
+                grafo.mat[v1][v2] = 1;
             }
         }
         System.out.println(grafo);

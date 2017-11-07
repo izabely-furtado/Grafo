@@ -24,7 +24,25 @@ public class Edge {
         this.label = label;
     }
     
-    public Edge(int id){
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Object getDado() {
+		return dado;
+	}
+	public void setDado(Object dado) {
+		this.dado = dado;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public Edge(int id){
         this.id = id;
     }
   

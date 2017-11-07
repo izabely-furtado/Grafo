@@ -23,7 +23,25 @@ public class Vertice {
         this.label = label;
     }
     
-    public Vertice(int id){
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Object getDado() {
+		return dado;
+	}
+	public void setDado(Object dado) {
+		this.dado = dado;
+	}
+	public Object getLabel() {
+		return label;
+	}
+	public void setLabel(Object label) {
+		this.label = label;
+	}
+	public Vertice(int id){
         this.id = id;
     }
 }
