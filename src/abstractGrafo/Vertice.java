@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package grafo;
+package abstractGrafo;
 
 /**
  *
  * @author 20121bsi0040
  */
-public class Vertice {
+public abstract class Vertice {
     int id;
     Object dado;
     Object label;
@@ -45,4 +45,3 @@ public class Vertice {
         this.id = id;
     }
 }
-

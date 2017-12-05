@@ -34,7 +34,7 @@ public class TestaGrafo {
     for (int i = 0; i < nArestas; i++) {
       Grafo.Aresta a = lerAresta ();
       grafo.insereAresta (a.v1 (), a.v2 (), a.peso ()); // @{\it Duas chamadas porque}@    
-      grafo.insereAresta (a.v2 (), a.v1 (), a.peso ()); // @{\it grafo n\~ao direcionado}@    
+      grafo.insereAresta (a.v2 (), a.v1 (), a.peso ()); // @{\it appGrafos n\~ao direcionado}@    
     }
     grafo.imprime ();  in.readLine();    
     Grafo grafoT = grafo.grafoTransposto();
@@ -44,7 +44,7 @@ public class TestaGrafo {
       System.out.println ("Aresta ja existe");
     else {
       grafo.insereAresta (a.v1 (), a.v2 (), a.peso ()); // @{\it Duas chamadas porque}@    
-      grafo.insereAresta (a.v2 (), a.v1 (), a.peso ()); // @{\it grafo n\~ao direcionado}@    
+      grafo.insereAresta (a.v2 (), a.v1 (), a.peso ()); // @{\it appGrafos n\~ao direcionado}@    
     }
     grafo.imprime (); in.readLine();
     
@@ -62,7 +62,7 @@ public class TestaGrafo {
     a = lerAresta ();
     if (grafo.existeAresta (a.v1 (), a.v2 ())) {
       grafo.retiraAresta (a.v1 (), a.v2 ()); // @{\it Duas chamadas porque}@
-      grafo.retiraAresta (a.v2 (), a.v1 ()); // @{\it grafo n\~ao direcionado}@
+      grafo.retiraAresta (a.v2 (), a.v1 ()); // @{\it appGrafos n\~ao direcionado}@
     }
     else System.out.println ("Aresta nao existe");
     grafo.imprime (); in.readLine();

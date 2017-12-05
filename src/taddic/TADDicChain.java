@@ -30,6 +30,14 @@ public class TADDicChain extends TADDicionario{
         this.N = 100;
     }
     
+    @SuppressWarnings("unchecked")
+	public TADDicChain() {
+        super(new HashEngineApp());
+        this.vetBulckets = new List[100];
+        this.tamanho = 0;
+        this.N = 100;
+    }
+    
     @Override
     public Object findElements(Object chave) {
         int i = this.dicEngine.hashCode(chave);
@@ -74,7 +82,7 @@ public class TADDicChain extends TADDicionario{
     public Object removeElement(Object chave) {
         int index = this.dicEngine.hashCode(chave);
         Item item = null;
-        if(this.vetBulckets[index] != null){
+        if(index != -1 && this.vetBulckets[index] != null){
             for(int i = 0; i < this.vetBulckets[index].size(); i++){
                 if(this.vetBulckets[index].get(i).getChave().equals(chave)){
                     item = this.vetBulckets[index].get(i);
@@ -106,7 +114,7 @@ public class TADDicChain extends TADDicionario{
         for(List<Item> listItem : this.vetBulckets){
             if(listItem != null){
                 for (Item item : listItem) {
-                    if (item != null) {
+                    if (item != null && item != TADDicionario.NO_SUCH_KEY) {
                         elements.add(item.getElemento());
                     }
                 }
