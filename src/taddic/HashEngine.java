@@ -11,4 +11,9 @@ package taddic;
  */
 public abstract class HashEngine {
 	public abstract int calcCodeHash(Object k);
+
+	public int hashCode(Object k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

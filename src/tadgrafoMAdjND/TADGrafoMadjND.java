@@ -5,22 +5,17 @@
  */
 package tadgrafoMAdjND;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import abstractGrafo.Edge;
-import abstractGrafo.TADGrafoAbs;
+import abstractGrafo.GrafoTPA;
 import abstractGrafo.Vertice;
 
 /**
  *
  * @author 20121bsi0040
  */
-public class TADGrafoMadjND extends TADGrafoAbs {
+public class TADGrafoMadjND extends GrafoTPA {
 	protected int[][] mat;
 	protected LinkedList<Integer> lstDeletados;
 
@@ -52,7 +47,7 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 	public LinkedList<Vertice> adjacenteVertices(Vertice v) {
 		LinkedList<Vertice> lstAdjacentes = new LinkedList<>();
 		for (int coluna = 0; coluna < this.dicVertices.size(); coluna++) {
-			Vertice aux = (VerticeMadj) this.dicVertices.findElements(coluna);
+			Vertice aux = (VerticeMadj) this.dicVertices.findElement(coluna);
 			if (this.mat[v.getId()][coluna] != 0 && !deletado(coluna)) {
 				if (aux != null) {
 					lstAdjacentes.add(aux);
@@ -67,7 +62,7 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 		LinkedList<Edge> lstIncidentes = new LinkedList<>();
 		for (int coluna = 0; coluna < this.dicVertices.size(); coluna++) {
 			if (this.mat[v.getId()][coluna] != 0 && !deletado(coluna)) {
-				Edge aux = (EdgeMadj) this.dicEdges.findElements(this.mat[v.getId()][coluna]);
+				Edge aux = (EdgeMadj) this.dicEdges.findElement(this.mat[v.getId()][coluna]);
 				if (aux != null) {
 					lstIncidentes.add(aux);
 				}
@@ -83,8 +78,8 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 			for (int coluna = 0; coluna < dicVertices.size(); coluna++) {
 				if (mat[linha][coluna] == a.getId()) {
 					vertices = new LinkedList<>();
-					vertices.add((VerticeMadj) dicVertices.findElements(linha));
-					vertices.add((VerticeMadj) dicVertices.findElements(coluna));
+					vertices.add((VerticeMadj) dicVertices.findElement(linha));
+					vertices.add((VerticeMadj) dicVertices.findElement(coluna));
 				}
 			}
 		}
@@ -95,7 +90,7 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 	public Vertice opposite(Vertice v, Edge a) {
 		for (int coluna = 0; coluna < this.mat[v.getId()].length; coluna++) {
 			if (mat[v.getId()][coluna] == a.getId()) {
-				return (VerticeMadj) dicVertices.findElements(coluna);
+				return (VerticeMadj) dicVertices.findElement(coluna);
 			}
 		}
 		return null;
@@ -124,10 +119,12 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 				this.mat[i][v.getId()] = -1;
 			}
 		}
+		//removendo da lista de vertices
 		this.dicVertices.removeElement(v.getId());
 		return aux;
 	}
 
+	
 	@Override
 	public Edge insertEdge(Vertice v, Vertice w, Object o) {
 		if (this.idGenerator < this.mat.length * 0.8) {
@@ -146,52 +143,21 @@ public class TADGrafoMadjND extends TADGrafoAbs {
 	@Override
 	public Object removeEdge(Edge e) {
 		Object aux = e.getDado();
+		//removendo da matriz
 		for (int linha = 0; linha < this.dicVertices.size(); linha++) {
 			for (int coluna = 0; coluna < this.dicVertices.size(); linha++) {
 				if (e.getId() == this.mat[linha][coluna]) {
+					//excluindo da matriz
 					this.mat[linha][coluna] = -1;
 					this.mat[coluna][linha] = -1;
 				}
 			}
 		}
+		//removendo da lista de 
 		return aux;
 	}
-
-	@Override
-	public void carrega(String nomeArquivo) {
-		boolean acabouVertices = false;
-		try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
-			while (br.ready() && !acabouVertices) {
-				String linha = br.readLine();
-				if ("#".equals(linha)) {
-					acabouVertices = true;
-				} else if (!acabouVertices) {
-					String[] conteudo = linha.split(" ");
-					if (conteudo.length == 3) {
-						Vertice v = new VerticeMadj(Integer.parseInt(conteudo[0]), conteudo[1], conteudo[2]);
-						this.insertVertex(v);
-					}
-					if (conteudo.length == 2) {
-						Vertice v = new VerticeMadj(Integer.parseInt(conteudo[0]), conteudo[1], null);
-						this.insertVertex(v);
-					}
-				}
-			}
-			while (br.ready() && acabouVertices) {
-				String linha = br.readLine();
-				String[] conteudo = linha.split(" ");
-				int v1 = Integer.parseInt(conteudo[0]);
-				int v2 = Integer.parseInt(conteudo[1]);
-				Vertice vertice1 = (VerticeMadj) this.dicVertices.findElements(v1);
-				Vertice vertice2 = (VerticeMadj) this.dicVertices.findElements(v2);
-				this.insertEdge(vertice1, vertice2, 1);
-			}
-		} catch (IOException ex) {
-			Logger.getLogger(TADGrafoMadjND.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		System.out.println(this);
-	}
-
+	
+	
 	private void redimensiona() {
 		int[][] matrizAntiga = this.mat;
 		if (this.idGenerator > this.mat.length * 0.8) {

@@ -5,33 +5,36 @@
  */
 package abstractGrafo;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import taddic.TADDicChain;
+import taddic.TadDicEA;
 
 /**
  *
  * @author 20121bsi0040
  */
-public abstract class TADGrafoAbs {
+public abstract class GrafoTPA {
     protected int N;
     protected int idGenerator = 0;
-    protected TADDicChain dicVertices;
-    protected TADDicChain dicEdges;
+    protected TadDicEA dicVertices;
+    protected TadDicEA dicEdges;
     
 
-    public TADGrafoAbs(){
+    public GrafoTPA(){
         this.N = 60;
         this.idGenerator = 0;
-        this.dicEdges = new TADDicChain();
-        this.dicVertices = new TADDicChain();
+        this.dicEdges = new TadDicEA();
+        this.dicVertices = new TadDicEA();
     }
     
-    public TADGrafoAbs(int quantidade){
+    public GrafoTPA(int quantidade){
         this.N = quantidade;
         this.idGenerator = 0;
-        this.dicEdges = new TADDicChain();
-        this.dicVertices = new TADDicChain();
+        this.dicEdges = new TadDicEA();
+        this.dicVertices = new TadDicEA();
     }
     
     public int numVertices(){
@@ -39,7 +42,7 @@ public abstract class TADGrafoAbs {
     }
     
     public int numEdges(){
-        return this.dicVertices.size();
+        return this.dicEdges.size();
     }
     
     public LinkedList<Vertice> vertices(){
@@ -71,39 +74,38 @@ public abstract class TADGrafoAbs {
     public abstract Object removeVertex(Vertice v);
     public abstract Edge insertEdge(Vertice v, Vertice w, Object o);
     public abstract Object removeEdge(Edge e);
-    public abstract void carrega(String nome_arq_grafo);
+    //public abstract void carrega(String nome_arq_grafo);
     
     
     public void carrega(String arq_grafo_tga){
         BufferedReader br = null;
-        String[] vet;
         //GrafoTPA g = new GrafoTPA
         
         try {
             br = new BufferedReader(new FileReader(arq_grafo_tga));
-            String linha = br.readline();
-            String vet_split = null;
+            String linha = br.readLine();
+            String[] vet_split = null;
             
             //carrega todos os vertices do arquivo de grafo no formato TGA
             while ((linha != null) && !linha.trim().equals("#")) {
                 vet_split =linha.split(" ", 2);
                 Vertice v = this.insertVertex(null);//vet_split[1]
                 v.setLabel(vet_split[1]);//vet_split[0]
-                linha = br.readline();
+                linha = br.readLine();
             }
             
             //carrega todos as arestas do arquivo de grafo no formato TGA
             
-            linha = br.readline();
+            linha = br.readLine();
             while (linha != null) {
                 vet_split = linha.split(" ", 3);
-                Vertice v = (Vertice)dicvertices.findElement(Integer.parseInt(vet_split[0]));
-                Vertice w = (Vertice)dicvertices.findElement(Integer.parseInt(vet_split[1]));
+                Vertice v = (Vertice)dicVertices.findElement(Integer.parseInt(vet_split[0]));
+                Vertice w = (Vertice)dicVertices.findElement(Integer.parseInt(vet_split[1]));
                 Edge e = this.insertEdge(v, w, null);
-                if(vet_split.len == 3){
+                if(vet_split.length == 3){
                     e.setLabel(vet_split[2]);
                 }
-                linha = br.readline();
+                linha = br.readLine();
             }// while
             br.close();
         }

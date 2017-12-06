@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class TADDicionario {
 	
-    public static Item NO_SUCH_KEY = new Item(null, null, 0);
+    public static ItemTabHash NO_SUCH_KEY = new ItemTabHash(null, null, 0);
     protected int tamanho;
     protected int N;
     protected HashEngine dicEngine;

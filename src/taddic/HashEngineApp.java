@@ -12,7 +12,7 @@ package taddic;
 public class HashEngineApp extends HashEngine{
     
     @Override
-    public int hashCode(Object k){
-        return k.hashCode(); // colocada aqui a formula matematica
-    }
+	public int calcCodeHash(Object k) {
+		return k.hashCode();
+	}
 }

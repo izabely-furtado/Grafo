@@ -11,7 +11,7 @@ package taddic;
  */
 public class DICTeste { 
     public static void main(String[] args){
-        TADDicChain dic = new TADDicChain(new HashEngineApp());
+        TadDicChain dic = new TadDicChain();
         dic.insertItem("1", "teste1");
         dic.insertItem("2", "teste2");
         dic.insertItem("3", "teste3");
@@ -29,7 +29,7 @@ public class DICTeste {
         
         System.out.println("-------------------------------");
         
-        TADDicEA dic2 = new TADDicEA(new HashEngineApp());
+        TadDicEA dic2 = new TadDicEA();
         dic2.insertItem("1", "teste1");
         dic2.insertItem("2", "teste2");
         dic2.insertItem("3", "teste3");

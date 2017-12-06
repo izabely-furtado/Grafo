@@ -5,8 +5,6 @@
  */
 package taddic;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.LinkedList;
 /**
  *
@@ -205,6 +203,7 @@ public class TadDicEA {
         } else {
             ItemTabHash item = conteudos[indice];
             this.conteudos[indice] = null;
+            this.quant--;
             return item;
         }
     } // fim removeElement

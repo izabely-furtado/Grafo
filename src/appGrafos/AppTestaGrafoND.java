@@ -4,13 +4,12 @@ import java.util.LinkedList;
 import tadgrafoLAdj.*;
 import tadgrafoMAdjND.*;
 import abstractGrafo.*;
-import tadgrafoLAdj.*;
-//import algoGrafos.*;   
+import algoGrafos.*;   
 
 public class AppTestaGrafoND {		
 	public static void main(String[] args){
-		//TADGrafoMadjND gnd = new TADGrafoMadjND();
-		TADGrafoLadjND gnd = new TADGrafoLadjND();
+		TADGrafoMadjND gnd = new TADGrafoMadjND();
+		//TADGrafoLadjND gnd = new TADGrafoLadjND();
 		
 		// Povoando o appGrafos gnd.
 		Vertice v = gnd.insertVertex(null);
@@ -94,7 +93,7 @@ public class AppTestaGrafoND {
 		// Construa a classe TPA2GS (Grafo TPA para appGrafos GraphStream). Nesta classe
 		// construa o método exibeGrafo(appGrafos TPA). O método exibe o visual do appGrafos TPA
 		// passado como parâmetro.
-		//TPA2GS.exibeGrafo(gnd);
+		TPA2GS.exibeGrafo(gnd);
 		
 		System.out.println();
 		

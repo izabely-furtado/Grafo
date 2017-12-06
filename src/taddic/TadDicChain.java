@@ -5,8 +5,6 @@
  */
 package taddic;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.LinkedList;
 /**
  *
@@ -19,6 +17,7 @@ public class TadDicChain {
 	private int N;
 	private int quant = 0;
 	
+	@SuppressWarnings("unchecked")
 	public TadDicChain(int n, HashEngine paramHengine){
 		// Fator de carga de 0,85 para tabelas de hashing com encadeamento. Livro texto página 327.
 		N = (int)(n/0.85);
@@ -29,6 +28,7 @@ public class TadDicChain {
 		hengine = paramHengine;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public TadDicChain(HashEngine paramHengine){
 		// Fator de carga de 0,85 para tabelas de hashing com encadeamento. Livro texto página 327.
 		N = 2000;
@@ -39,6 +39,7 @@ public class TadDicChain {
 		hengine = paramHengine;
 	}	
 	
+	@SuppressWarnings("unchecked")
 	public TadDicChain(){
 		// Fator de carga de 0,85 para tabelas de hashing com encadeamento. Livro texto página 327.
 		N = 2000;

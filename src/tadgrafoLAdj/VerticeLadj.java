@@ -10,7 +10,7 @@ import java.util.List;
 
 import abstractGrafo.Edge;
 import abstractGrafo.Vertice;
-import taddic.TADDicChain;
+import taddic.TadDicEA;
 
 /**
  *
@@ -18,7 +18,7 @@ import taddic.TADDicChain;
  */
 public class VerticeLadj extends Vertice{
     //Edge edge;
-    TADDicChain dicEdges = new TADDicChain();
+    TadDicEA dicEdges = new TadDicEA();
     
     public VerticeLadj(int id, Object dado, String label){
         super(id, dado, label);

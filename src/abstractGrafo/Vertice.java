@@ -12,7 +12,7 @@ package abstractGrafo;
 public abstract class Vertice {
     int id;
     Object dado;
-    Object label;
+    String label;
     
     public Vertice(){
         
@@ -35,10 +35,10 @@ public abstract class Vertice {
 	public void setDado(Object dado) {
 		this.dado = dado;
 	}
-	public Object getLabel() {
+	public String getLabel() {
 		return label;
 	}
-	public void setLabel(Object label) {
+	public void setLabel(String label) {
 		this.label = label;
 	}
 	public Vertice(int id){

@@ -42,10 +42,10 @@ public class TestaGrafo1 {
                 }
             }
             while (br.ready() && acabouVertices) {
-                String linha = br.readLine();
-                String[] conteudo = linha.split(" ");
-                int v1 = Integer.parseInt(conteudo[0]);
-                int v2 = Integer.parseInt(conteudo[1]);
+             //   String linha = br.readLine();
+            //    String[] conteudo = linha.split(" ");
+            //    int v1 = Integer.parseInt(conteudo[0]);
+             //   int v2 = Integer.parseInt(conteudo[1]);
             //    Vertice vertice1 = (Vertice) appGrafos.dicVertices.findElements(v1);
             //    Vertice vertice2 = (Vertice) appGrafos.dicVertices.findElements(v2);
             //    appGrafos.insertEdge(vertice1, vertice2, 1);

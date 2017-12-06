@@ -5,25 +5,18 @@
  */
 package tadgrafoLAdj;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import abstractGrafo.Edge;
-import abstractGrafo.TADGrafoAbs;
+import abstractGrafo.GrafoTPA;
 import abstractGrafo.Vertice;
-import taddic.Item;
-import taddic.TADDicChain;
 
 /**
  *
  * @author 20121bsi0040
  */
-public class TADGrafoLadjND extends TADGrafoAbs {
+public class TADGrafoLadjND extends GrafoTPA {
 
 	public TADGrafoLadjND(int quantVertices) {
 		super(quantVertices);
@@ -125,16 +118,11 @@ public class TADGrafoLadjND extends TADGrafoAbs {
 		//criando a aresta
 		EdgeLadj e = new EdgeLadj(this.geraId(), o, "");
 		e.setVertexes(v, w);
-		
 		//atrelando a aresta criada aos vertices
-		VerticeLadj vaux = (VerticeLadj) this.dicVertices.findElements(v.getId());
+		VerticeLadj vaux = (VerticeLadj) this.dicVertices.findElement(v.getId());
 		vaux.dicEdges.insertItem(e.getId(), e);
-		//this.dicVertices.removeElement(v.getId());
-		this.insertVertex(vaux);
-		VerticeLadj waux = (VerticeLadj) this.dicVertices.findElements(w.getId());
+		VerticeLadj waux = (VerticeLadj) this.dicVertices.findElement(w.getId());
 		waux.dicEdges.insertItem(e.getId(), e);
-		//this.dicVertices.removeElement(w.getId());
-		this.insertVertex(waux);
 		//inserindo a aresta em si
 		this.dicEdges.insertItem(e.getId(), e);
 		return e;
@@ -154,42 +142,7 @@ public class TADGrafoLadjND extends TADGrafoAbs {
 		return aux;
 
 	}
-
-	@Override
-	public void carrega(String nomeArquivo) {
-		boolean acabouVertices = false;
-		try (BufferedReader br = new BufferedReader(new FileReader(nomeArquivo))) {
-			while (br.ready() && !acabouVertices) {
-				String linha = br.readLine();
-				if ("#".equals(linha)) {
-					acabouVertices = true;
-				} else if (!acabouVertices) {
-					String[] conteudo = linha.split(" ");
-					if (conteudo.length == 3) {
-						Vertice v = new VerticeLadj(Integer.parseInt(conteudo[0]), conteudo[1], conteudo[2]);
-						this.insertVertex(v);
-					}
-					if (conteudo.length == 2) {
-						Vertice v = new VerticeLadj(Integer.parseInt(conteudo[0]), conteudo[1], null);
-						this.insertVertex(v);
-					}
-				}
-			}
-			while (br.ready() && acabouVertices) {
-				String linha = br.readLine();
-				String[] conteudo = linha.split(" ");
-				int v1 = Integer.parseInt(conteudo[0]);
-				int v2 = Integer.parseInt(conteudo[1]);
-				Vertice vertice1 = (Vertice) this.dicVertices.findElements(v1);
-				Vertice vertice2 = (Vertice) this.dicVertices.findElements(v2);
-				this.insertEdge(vertice1, vertice2, 1);
-			}
-		} catch (IOException ex) {
-			Logger.getLogger(TADGrafoLadjND.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		System.out.println(this);
-	}
-
+	
 	protected int geraId() {
 		int id; // = 0;
 		id = this.idGenerator;
