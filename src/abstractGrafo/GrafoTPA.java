@@ -74,4 +74,46 @@ public abstract class TADGrafoAbs {
     public abstract void carrega(String nome_arq_grafo);
     
     
+    public void carrega(String arq_grafo_tga){
+        BufferedReader br = null;
+        String[] vet;
+        //GrafoTPA g = new GrafoTPA
+        
+        try {
+            br = new BufferedReader(new FileReader(arq_grafo_tga));
+            String linha = br.readline();
+            String vet_split = null;
+            
+            //carrega todos os vertices do arquivo de grafo no formato TGA
+            while ((linha != null) && !linha.trim().equals("#")) {
+                vet_split =linha.split(" ", 2);
+                Vertice v = this.insertVertex(null);//vet_split[1]
+                v.setLabel(vet_split[1]);//vet_split[0]
+                linha = br.readline();
+            }
+            
+            //carrega todos as arestas do arquivo de grafo no formato TGA
+            
+            linha = br.readline();
+            while (linha != null) {
+                vet_split = linha.split(" ", 3);
+                Vertice v = (Vertice)dicvertices.findElement(Integer.parseInt(vet_split[0]));
+                Vertice w = (Vertice)dicvertices.findElement(Integer.parseInt(vet_split[1]));
+                Edge e = this.insertEdge(v, w, null);
+                if(vet_split.len == 3){
+                    e.setLabel(vet_split[2]);
+                }
+                linha = br.readline();
+            }// while
+            br.close();
+        }
+        catch (IOException ex) {
+            throw new RuntimeException("arquivo nao encontrado");
+        }//fim catch
+        
+    }//fim carrega
+        
+      
+            
+    
 }
