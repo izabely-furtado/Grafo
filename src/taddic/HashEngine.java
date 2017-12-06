@@ -10,5 +10,5 @@ package taddic;
  * @author 20121bsi0040
  */
 public abstract class HashEngine {
-    public abstract int hashCode(Object k);
+	public abstract int calcCodeHash(Object k);
 }
