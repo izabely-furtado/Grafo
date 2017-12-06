@@ -24,9 +24,18 @@ public class TPA2GS {
     LinkedList<Vertice> lst_Vs = g.vertices();
     
     //alimentando o grafo
-    for (int i = 0; i < lst_vs.size(); i++){
+    for (int i = 0; i < lst_Vs.size(); i++){
       Node objGSNode = graph.addNode(lst_Vs.get(i).getLabel());
       objGSNode.addAtribute("ui.label", lst_Vs.get(i).getLabel());
+    }
+    
+    linkedList<Edge> lst_Es = e.edges();
+    
+    //alimentando graf0 GS com as arestas
+    for (int i = 0; i < lst_Es.size(); i++){
+      Edge etpa = tsp // tá no celular
+      Node objGSNode = graph.addNode(lst_Es.get(i).getLabel());
+      objGSNode.addAtribute("ui.label", lst_Es.get(i).getLabel());
     }
     
     graph.addAll("ui.stylesheet", styleSheet);
