@@ -150,20 +150,7 @@ public class TADGrafoLadjND extends GrafoTPA {
 		return id;
 	}
 
-	/* EM PROCESSO */
-	// busca em altura 
-	public LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice s) {
-		LinkedList<Vertice> visitados = new LinkedList<>();
-		
-		return visitados;
-	}
-
-	// busca em largura
-	public LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice s) {
-		LinkedList<Vertice> visitados = new LinkedList<>();
-
-		return visitados;
-	}
+	
 	/*
 	 * public String toString(){ String retorno = ""; for (int[] mat1 :
 	 * this.mat) { for (int v2 = 0; v2 < mat1.length; v2++) { retorno +=

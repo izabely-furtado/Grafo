@@ -76,12 +76,6 @@ public abstract class GrafoTPA {
     public abstract Object removeEdge(Edge e);
     //public abstract void carrega(String nome_arq_grafo);
     
-    // busca em altura
- 	public abstract LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice s);
- 	// busca em largura
- 	public abstract LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice s);
-    
-    
     public void carrega(String arq_grafo_tga){
         BufferedReader br = null;
         //GrafoTPA g = new GrafoTPA

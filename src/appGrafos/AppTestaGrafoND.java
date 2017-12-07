@@ -77,7 +77,7 @@ public class AppTestaGrafoND {
 		System.out.println("Graus dos vértices:");
 		for(i=0; i < lvs.size(); i++)
 			System.out.println("Vértice " + lvs.get(i).getLabel() + " grau " + gnd.degree(lvs.get(i)));
-		
+		 
 		gnd.areAdjacent(v,u);
 		gnd.areAdjacent(x,z);
 		gnd.areAdjacent(w,y);

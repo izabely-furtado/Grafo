@@ -9,18 +9,55 @@ import taddic.TadDicEA;
 
 public class AlgoGrafo {
 
-	// busca em altura
-	public LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice s) {
+	// busca em altura AINDA EM CONSTRUÇÂO
+	public static LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice v) {
 		LinkedList<Vertice> visitados = new LinkedList<>();
+		LinkedList<Vertice> filas = new LinkedList<>();
 
+		int ini = 0, fim = 0;
+		visitados.add(v);
+		filas.add(v);
+		fim++;
+		while (ini != fim) {
+			Vertice no = filas.get(ini++);
+
+			// Processa_No(no);
+
+			for (Vertice adj : g.adjacenteVertices(no)) {
+				if (!visitados.contains(adj)) { 
+					fim++;
+					filas.add(adj);
+					visitados.add(adj);
+				}
+			}
+		}
+		
 		return visitados;
 	}
 
 	// busca em largura
-	public LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice s) {
+	public static LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice v) {
 		LinkedList<Vertice> visitados = new LinkedList<>();
-		
+		LinkedList<Vertice> filas = new LinkedList<>();
 
+		int ini = 0, fim = 0;
+		visitados.add(v);
+		filas.add(v);
+		fim++;
+		while (ini != fim) {
+			Vertice no = filas.get(ini++);
+
+			// Processa_No(no);
+
+			for (Vertice adj : g.adjacenteVertices(no)) {
+				if (!visitados.contains(adj)) {
+					fim++;
+					filas.add(adj);
+					visitados.add(adj);
+				}
+			}
+		}
+		
 		return visitados;
 	}
 

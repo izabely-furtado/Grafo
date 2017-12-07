@@ -20,27 +20,48 @@ public class AppTestaTGF {
 		for (Vertice vertice : caminho) {
 			System.out.print(vertice.getLabel() + " -> ");
 		}
-		System.out.print("CHEGOU LÁ!!!");
+		System.out.println("CHEGOU LÁ!!!");
 	}
 
+	public static void mostraEmAltura(GrafoTPA g, Vertice v1) {
+		List<Vertice> caminho = AlgoGrafo.buscaDFS(g, v1);
+		for (Vertice vertice : caminho) {
+			System.out.print(vertice.getLabel() + " -> ");
+		}
+		System.out.println("CHEGOU LÁ!!!");
+	}
 
+	public static void mostraEmLargura(GrafoTPA g, Vertice v1) {
+		List<Vertice> caminho = AlgoGrafo.buscaBFS(g, v1);
+		for (Vertice vertice : caminho) {
+			System.out.print(vertice.getLabel() + " -> ");
+		}
+		System.out.println("CHEGOU LÁ!!!");
+	}
+
+	
 	public static void main(String[] args) {
 
 		// apresentando grafo de lista
 		TADGrafoMadjND gndMatriz = new TADGrafoMadjND();
 		gndMatriz.carrega("tpa_sw_epI_allchar.txt");
-		TPA2GS.exibeGrafo(gndMatriz);
+		//TPA2GS.exibeGrafo(gndMatriz);
 
 		// apresentando grafo de lista
 		TADGrafoLadjND gndLista = new TADGrafoLadjND();
 		gndLista.carrega("tpa_sw_full_allchar.txt");
-		TPA2GS.exibeGrafo(gndLista);
+		//TPA2GS.exibeGrafo(gndLista);
 
 		// iup
 		Vertice v1 = gndLista.vertices().get(3);
 		Vertice v2 = gndLista.vertices().get(0);
 		AppTestaTGF.mostraCaminho(gndLista, v1, v2);
+		//AppTestaTGF.mostraEmAltura(gndLista, v1);
+		AppTestaTGF.mostraEmLargura(gndLista, v1);
 
+
+		
+		
 		System.out.println();
 	}
 }
