@@ -45,7 +45,7 @@ public class TADGrafoLadjND extends GrafoTPA {
 				v2 = (VerticeLadj) verticesAresta.get(1);
 			}
 			lstAdjacentes.add(v2);
-			
+
 		}
 		return lstAdjacentes;
 	}
@@ -76,7 +76,7 @@ public class TADGrafoLadjND extends GrafoTPA {
 	@Override
 	public Vertice opposite(Vertice v, Edge e) {
 		LinkedList<Vertice> lstEnds = this.endVertices(e);
-		if (lstEnds.size() == 2 && !lstEnds.contains(v)) {
+		if (lstEnds.size() == 2 && lstEnds.contains(v)) {
 			Vertice v2 = (VerticeLadj) lstEnds.get(0);
 			if (v2.getId() == v.getId()) {
 				v2 = (VerticeLadj) lstEnds.get(1);
@@ -115,15 +115,15 @@ public class TADGrafoLadjND extends GrafoTPA {
 
 	@Override
 	public Edge insertEdge(Vertice v, Vertice w, Object o) {
-		//criando a aresta
+		// criando a aresta
 		EdgeLadj e = new EdgeLadj(this.geraId(), o, "");
 		e.setVertexes(v, w);
-		//atrelando a aresta criada aos vertices
+		// atrelando a aresta criada aos vertices
 		VerticeLadj vaux = (VerticeLadj) this.dicVertices.findElement(v.getId());
 		vaux.dicEdges.insertItem(e.getId(), e);
 		VerticeLadj waux = (VerticeLadj) this.dicVertices.findElement(w.getId());
 		waux.dicEdges.insertItem(e.getId(), e);
-		//inserindo a aresta em si
+		// inserindo a aresta em si
 		this.dicEdges.insertItem(e.getId(), e);
 		return e;
 	}
@@ -142,12 +142,27 @@ public class TADGrafoLadjND extends GrafoTPA {
 		return aux;
 
 	}
-	
+
 	protected int geraId() {
 		int id; // = 0;
 		id = this.idGenerator;
 		this.idGenerator++;
 		return id;
+	}
+
+	/* EM PROCESSO */
+	// busca em altura 
+	public LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice s) {
+		LinkedList<Vertice> visitados = new LinkedList<>();
+		
+		return visitados;
+	}
+
+	// busca em largura
+	public LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice s) {
+		LinkedList<Vertice> visitados = new LinkedList<>();
+
+		return visitados;
 	}
 	/*
 	 * public String toString(){ String retorno = ""; for (int[] mat1 :

@@ -9,7 +9,7 @@ package abstractGrafo;
  *
  * @author 20121bsi0040
  */
-public abstract class Vertice {
+public abstract class Vertice implements Comparable<Vertice> {
     int id;
     Object dado;
     String label;
@@ -43,5 +43,16 @@ public abstract class Vertice {
 	}
 	public Vertice(int id){
         this.id = id;
+    }
+	
+	//digamos que o dado seja a distancia
+	public int compareTo(Vertice outroVertice) {
+        if (Integer.parseInt(this.dado + "") < Integer.parseInt(outroVertice.dado + "") ) {
+            return -1;
+        }
+        if (Integer.parseInt(this.dado + "") > Integer.parseInt(outroVertice.dado + "")) {
+            return 1;
+        }
+        return 0;
     }
 }

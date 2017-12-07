@@ -8,8 +8,8 @@ import algoGrafos.*;
 
 public class AppTestaGrafoND {		
 	public static void main(String[] args){
-		TADGrafoMadjND gnd = new TADGrafoMadjND();
-		//TADGrafoLadjND gnd = new TADGrafoLadjND();
+		//TADGrafoMadjND gnd = new TADGrafoMadjND();
+		TADGrafoLadjND gnd = new TADGrafoLadjND();
 		
 		// Povoando o appGrafos gnd.
 		Vertice v = gnd.insertVertex(null);
@@ -105,6 +105,8 @@ public class AppTestaGrafoND {
 		
 		System.out.println("Total de vertices: " + gnd.numVertices());
 		System.out.println("Total de arestas: " + gnd.numEdges());
+		
+		
 		
 		System.out.println();	
 	} // fim main

@@ -183,6 +183,21 @@ public class TADGrafoMadjND extends GrafoTPA {
 	protected boolean deletado(int id) {
 		return this.lstDeletados.contains(id);
 	}
+	
+	/* EM PROCESSO */
+	// busca em altura 
+	public LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice s) {
+		LinkedList<Vertice> visitados = new LinkedList<>();
+		
+		return visitados;
+	}
+
+	// busca em largura
+	public LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice s) {
+		LinkedList<Vertice> visitados = new LinkedList<>();
+
+		return visitados;
+	}
 
 	protected int geraId() {
 		int id; // = 0;
