@@ -24,7 +24,7 @@ public abstract class Edge {
         this.dado = dado;
         this.label = label;
     }
-
+    
     public int getId() {
         return id;
     }

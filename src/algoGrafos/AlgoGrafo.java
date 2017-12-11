@@ -24,7 +24,7 @@ public class AlgoGrafo {
 		Vertice vertice = AlgoGrafo.getVertice(g, lbVOrigem);
 		//verificando se existe
 		if (vertice == null) {
-			System.out.println("Label não corresponde a um Vertice");
+			System.out.println("Label nï¿½o corresponde a um Vertice");
 			return null;
 		}
 
@@ -35,7 +35,7 @@ public class AlgoGrafo {
 		while (!pilha.isEmpty()) {
 			Vertice v = pilha.remove(pilha.size() - 1);
 			LinkedList<Vertice> adjacentes = g.adjacenteVertices(v);
-			//se ainda nao foi visitado... é visitado
+			//se ainda nao foi visitado... ï¿½ visitado
 			if (!visitados.contains(v)) {
 				visitados.add(v);
 			}
@@ -80,8 +80,12 @@ public class AlgoGrafo {
 	}
 
 	// Algoritmo de Dijkstra
-	public static LinkedList<Vertice> dijkstra(GrafoTPA g, Vertice lbVOrigem, Vertice lbVDestino) {
+	//public static LinkedList<Vertice> dijkstra(GrafoTPA g, Vertice lbVOrigem, Vertice lbVDestino) {
+	public static LinkedList<Vertice> dijkstra(GrafoTPA g, String lbVOrigem, String lbVDestino) {
 
+		Vertice vOrigem = AlgoGrafo.getVertice(g, lbVOrigem);
+		Vertice vDestino = AlgoGrafo.getVertice(g, lbVDestino);
+		
 		TabHEA pais = new TabHEA();
 		LinkedList<Vertice> menorCaminho = new LinkedList<Vertice>();
 		// Variavel que recebe os vertices pertencentes ao menor caminho
@@ -91,14 +95,14 @@ public class AlgoGrafo {
 		LinkedList<Vertice> naoVisitados = new LinkedList<>();
 
 		// Adiciona a origem na lista do menor caminho
-		menorCaminho.add(lbVOrigem);
+		menorCaminho.add(vOrigem);
 
 		// Colocando a distancias iniciais
 		for (Vertice v : g.vertices()) {
 			// o dado, neste caso, esta guardando a distancia
 			// Vertice atual tem distancia zero, e todos os outros,
 			// 9999("infinita")
-			if (v.getId() == lbVOrigem.getId()) {
+			if (v.getId() == vOrigem.getId()) {
 				v.setDado(0);
 			} else {
 				v.setDado(9999);
@@ -146,7 +150,7 @@ public class AlgoGrafo {
 						 * anterior eh apagada, pois existe um caminho menor
 						 * vertices pais, ate o vertice origem.
 						 */
-						if (vizinho.getId() == lbVDestino.getId()) {
+						if (vizinho.getId() == vDestino.getId()) {
 							menorCaminho.clear();
 							verticeCaminho = vizinho;
 							menorCaminho.add(vizinho);
