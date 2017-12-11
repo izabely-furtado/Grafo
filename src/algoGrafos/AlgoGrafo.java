@@ -2,47 +2,65 @@ package algoGrafos;
 
 import java.util.Collections;
 import java.util.LinkedList;
+
 import abstractGrafo.Edge;
 import abstractGrafo.GrafoTPA;
 import abstractGrafo.Vertice;
-import taddic.TadDicEA;
+import tabHash.TabHEA;
 
 public class AlgoGrafo {
 
-	// busca em altura AINDA EM CONSTRUÇÂO
-	public static LinkedList<Vertice> buscaDFS(GrafoTPA g, Vertice v) {
+	private static Vertice getVertice(GrafoTPA g, String label) {
+		Vertice retorno = null;
+		for (Vertice v : g.vertices()) {
+			if (v.getLabel() == label) {
+				retorno = v;
+			}
+		}
+		return retorno;
+	}
+
+	public static LinkedList<Vertice> DFS(GrafoTPA g, String lbVOrigem) {
+		Vertice vertice = AlgoGrafo.getVertice(g, lbVOrigem);
+		//verificando se existe
+		if (vertice == null) {
+			System.out.println("Label n�o corresponde a um Vertice");
+			return null;
+		}
+
 		LinkedList<Vertice> visitados = new LinkedList<>();
-		LinkedList<Vertice> filas = new LinkedList<>();
-
-		int ini = 0, fim = 0;
-		visitados.add(v);
-		filas.add(v);
-		fim++;
-		while (ini != fim) {
-			Vertice no = filas.get(ini++);
-
-			// Processa_No(no);
-
-			for (Vertice adj : g.adjacenteVertices(no)) {
-				if (!visitados.contains(adj)) { 
-					fim++;
-					filas.add(adj);
-					visitados.add(adj);
+		LinkedList<Vertice> pilha = new LinkedList<>();
+		pilha.add(vertice);
+		
+		while (!pilha.isEmpty()) {
+			Vertice v = pilha.remove(pilha.size() - 1);
+			LinkedList<Vertice> adjacentes = g.adjacenteVertices(v);
+			//se ainda nao foi visitado... � visitado
+			if (!visitados.contains(v)) {
+				visitados.add(v);
+			}
+			//visitando adjacentes
+			for (Vertice adjacente : adjacentes) {
+				if (!visitados.contains(adjacente)) {
+					pilha.add(adjacente);
 				}
 			}
 		}
-		
+
 		return visitados;
+
 	}
 
 	// busca em largura
-	public static LinkedList<Vertice> buscaBFS(GrafoTPA g, Vertice v) {
+	public static LinkedList<Vertice> BFS(GrafoTPA g, String lbVOrigem) {
+		Vertice vertice = AlgoGrafo.getVertice(g, lbVOrigem);
+		
 		LinkedList<Vertice> visitados = new LinkedList<>();
 		LinkedList<Vertice> filas = new LinkedList<>();
 
 		int ini = 0, fim = 0;
-		visitados.add(v);
-		filas.add(v);
+		visitados.add(vertice);
+		filas.add(vertice);
 		fim++;
 		while (ini != fim) {
 			Vertice no = filas.get(ini++);
@@ -57,14 +75,14 @@ public class AlgoGrafo {
 				}
 			}
 		}
-		
+
 		return visitados;
 	}
 
 	// Algoritmo de Dijkstra
-	public static LinkedList<Vertice> caminhoMin(GrafoTPA g, Vertice v1, Vertice v2) {
+	public static LinkedList<Vertice> dijkstra(GrafoTPA g, Vertice lbVOrigem, Vertice lbVDestino) {
 
-		TadDicEA pais = new TadDicEA();
+		TabHEA pais = new TabHEA();
 		LinkedList<Vertice> menorCaminho = new LinkedList<Vertice>();
 		// Variavel que recebe os vertices pertencentes ao menor caminho
 		Vertice verticeCaminho;
@@ -73,14 +91,14 @@ public class AlgoGrafo {
 		LinkedList<Vertice> naoVisitados = new LinkedList<>();
 
 		// Adiciona a origem na lista do menor caminho
-		menorCaminho.add(v1);
+		menorCaminho.add(lbVOrigem);
 
 		// Colocando a distancias iniciais
 		for (Vertice v : g.vertices()) {
 			// o dado, neste caso, esta guardando a distancia
 			// Vertice atual tem distancia zero, e todos os outros,
 			// 9999("infinita")
-			if (v.getId() == v1.getId()) {
+			if (v.getId() == lbVOrigem.getId()) {
 				v.setDado(0);
 			} else {
 				v.setDado(9999);
@@ -114,9 +132,10 @@ public class AlgoGrafo {
 					// distância = dado
 					// atual.getArestas().get(i).getPeso())) { //0 já que as
 					// arestas analisadas nao possuem peso
-					if (Integer.parseInt(vizinho.getDado() + "") > (Integer.parseInt(atual.getDado() + "") + 1)) {
+					if (Integer.parseInt(vizinho.getDado() + "") > (Integer.parseInt(atual.getDado() + "")
+							+ Integer.parseInt(e.getDado() + ""))) {
 
-						vizinho.setDado(Integer.parseInt(atual.getDado() + "") + 1);
+						vizinho.setDado(Integer.parseInt(atual.getDado() + "") + Integer.parseInt(e.getDado() + ""));
 						// setando pai do vertice... ou... anterior na ordem de
 						// passagem
 						pais.insertItem(vizinho.getId(), atual);
@@ -127,7 +146,7 @@ public class AlgoGrafo {
 						 * anterior eh apagada, pois existe um caminho menor
 						 * vertices pais, ate o vertice origem.
 						 */
-						if (vizinho.getId() == v2.getId()) {
+						if (vizinho.getId() == lbVDestino.getId()) {
 							menorCaminho.clear();
 							verticeCaminho = vizinho;
 							menorCaminho.add(vizinho);

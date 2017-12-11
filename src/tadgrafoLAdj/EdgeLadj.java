@@ -10,14 +10,14 @@ import java.util.List;
 
 import abstractGrafo.Edge;
 import abstractGrafo.Vertice;
-import taddic.TadDicEA;
+import tabHash.TabHEA;
 
 /**
  *
  * @author 20121bsi0040
  */
 public class EdgeLadj extends Edge{
-    TadDicEA dicVertices = new TadDicEA();
+    TabHEA dicVertices = new TabHEA();
     
     public EdgeLadj(int id, Object dado, String label){
         super(id, dado, label);

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package taddic;
+package tabHash;
 
 import java.util.LinkedList;
 /**
  *
  * @author 20121bsi0040
  */
-public class TadDicEA {
+public class TabHEA {
 
     public static final ItemTabHash NO_SUCH_KEY = new ItemTabHash(null, null);
     private static final ItemTabHash DISPONIVEL = new ItemTabHash(null, null);
@@ -19,7 +19,7 @@ public class TadDicEA {
     private int N;
     private int quant = 0;
 
-    public TadDicEA(int n, HashEngine paramHengine) {
+    public TabHEA(int n, HashEngine paramHengine) {
         // Fator de carga de 0,5 para tabelas de hashing com encadeamento. Livro texto página 327.
         N = (int) (n / 0.5);
 
@@ -29,7 +29,7 @@ public class TadDicEA {
         hengine = paramHengine;
     }
 
-    public TadDicEA(HashEngine paramHengine) {
+    public TabHEA(HashEngine paramHengine) {
         // Fator de carga de 0,85 para tabelas de hashing com encadeamento. Livro texto página 327.
         N = 2000;
 
@@ -39,9 +39,9 @@ public class TadDicEA {
         hengine = paramHengine;
     }
 
-    public TadDicEA() {
+    public TabHEA() {
         // Fator de carga de 0,85 para tabelas de hashing com encadeamento. Livro texto página 327.
-        N = 100;
+        N = 2000;
 
         // As listas ainda não foram criadas.
         conteudos = new ItemTabHash[N];
@@ -58,7 +58,7 @@ public class TadDicEA {
                 return -1;
             }
 
-            if (conteudos[j].equals(TadDicEA.DISPONIVEL)) {
+            if (conteudos[j].equals(TabHEA.DISPONIVEL)) {
                 j = (j + 1) % N;
             } else if (conteudos[j].getK().equals(k)) {
                 return j;
@@ -194,7 +194,6 @@ public class TadDicEA {
         }
     } // fim findElement
 
-    // IMPLEMENTE ESTE MÉTODO PARA A PROVA 1 TPA 2017-2
     public Object removeElement(Object k) {
         int indice = encontraItem(k);
 

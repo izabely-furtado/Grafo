@@ -121,6 +121,8 @@ public class TADGrafoLadjND extends GrafoTPA {
 		// atrelando a aresta criada aos vertices
 		VerticeLadj vaux = (VerticeLadj) this.dicVertices.findElement(v.getId());
 		vaux.dicEdges.insertItem(e.getId(), e);
+		((VerticeLadj)v).dicEdges.insertItem(e.getId(), e);
+		
 		VerticeLadj waux = (VerticeLadj) this.dicVertices.findElement(w.getId());
 		waux.dicEdges.insertItem(e.getId(), e);
 		// inserindo a aresta em si

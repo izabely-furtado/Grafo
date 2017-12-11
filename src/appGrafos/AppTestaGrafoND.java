@@ -4,14 +4,15 @@ import java.util.LinkedList;
 import tadgrafoLAdj.*;
 import tadgrafoMAdjND.*;
 import abstractGrafo.*;
-import algoGrafos.*;   
+import tadgrafoLAdj.*;
+import algoGrafos.*;
 
 public class AppTestaGrafoND {		
 	public static void main(String[] args){
-		//TADGrafoMadjND gnd = new TADGrafoMadjND();
-		TADGrafoLadjND gnd = new TADGrafoLadjND();
+		TADGrafoMadjND gnd = new TADGrafoMadjND();
+		//TADGrafoLadjND gnd = new TADGrafoLadjND();
 		
-		// Povoando o appGrafos gnd.
+		// Povoando o grafo gnd.
 		Vertice v = gnd.insertVertex(null);
 		v.setLabel("V");
 		
@@ -58,7 +59,7 @@ public class AppTestaGrafoND {
 		
 		System.out.println();
 		
-		// Testando interface do appGrafos
+		// Testando interface do grafo
 		LinkedList<Vertice> lvs = gnd.vertices();
 		LinkedList<Vertice> ladjs = gnd.vertices();
 		int i, j;
@@ -77,7 +78,7 @@ public class AppTestaGrafoND {
 		System.out.println("Graus dos vértices:");
 		for(i=0; i < lvs.size(); i++)
 			System.out.println("Vértice " + lvs.get(i).getLabel() + " grau " + gnd.degree(lvs.get(i)));
-		 
+		
 		gnd.areAdjacent(v,u);
 		gnd.areAdjacent(x,z);
 		gnd.areAdjacent(w,y);
@@ -90,10 +91,10 @@ public class AppTestaGrafoND {
 		System.out.println("Total de vertices: " + gnd.numVertices());
 		System.out.println("Total de arestas: " + gnd.numEdges());
 		
-		// Construa a classe TPA2GS (Grafo TPA para appGrafos GraphStream). Nesta classe
-		// construa o método exibeGrafo(appGrafos TPA). O método exibe o visual do appGrafos TPA
+		// Construa a classe TPA2GS (Grafo TPA para grafo GraphStream). Nesta classe
+		// construa o método exibeGrafo(grafo TPA). O método exibe o visual do grafo TPA
 		// passado como parâmetro.
-		TPA2GS.exibeGrafo(gnd);
+		//TPA2GS.exibeGrafo(gnd);
 		
 		System.out.println();
 		
@@ -105,8 +106,6 @@ public class AppTestaGrafoND {
 		
 		System.out.println("Total de vertices: " + gnd.numVertices());
 		System.out.println("Total de arestas: " + gnd.numEdges());
-		
-		
 		
 		System.out.println();	
 	} // fim main
