@@ -48,7 +48,7 @@ public class AppTestaTGF {
 		TADGrafoMadjND gndMatriz = new TADGrafoMadjND();
 		gndMatriz.carrega2("judith354.txt");
 		TPA2GS.exibeGrafo(gndMatriz);
-
+		
 		// apresentando grafo de lista
 		TADGrafoLadjND gndLista = new TADGrafoLadjND();
 		gndLista.carrega2("judith363.txt");
@@ -57,12 +57,13 @@ public class AppTestaTGF {
 		// iup
 		Vertice v1 = gndMatriz.vertices().get(0);
 		Vertice v2 = gndMatriz.vertices().get(3);
-		//AppTestaTGF.mostraCaminho(gndMatriz, v1, v2);
+		AppTestaTGF.mostraCaminho(gndMatriz, v1, v2);
 		AppTestaTGF.mostraEmAltura(gndMatriz, v1);
 		AppTestaTGF.mostraEmLargura(gndMatriz, v1);
 		
-		Vertice v3 = gndLista.vertices().get(0);
+		Vertice v3 = gndLista.vertices().get(1);
 		Vertice v4 = gndLista.vertices().get(3);
+		AppTestaTGF.mostraCaminho(gndLista, v3, v4);
 		AppTestaTGF.mostraEmAltura(gndLista, v3);
 		AppTestaTGF.mostraEmLargura(gndLista, v4);
 

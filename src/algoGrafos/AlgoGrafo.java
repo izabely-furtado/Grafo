@@ -136,6 +136,9 @@ public class AlgoGrafo {
 					// distância = dado
 					// atual.getArestas().get(i).getPeso())) { //0 já que as
 					// arestas analisadas nao possuem peso
+					if(e.getDado() == null){
+						e.setDado(1);
+					}
 					if (Integer.parseInt(vizinho.getDado() + "") > (Integer.parseInt(atual.getDado() + "")
 							+ Integer.parseInt(e.getDado() + ""))) {
 
