@@ -22,7 +22,7 @@ public class AlgoGrafo {
 
 	public static LinkedList<Vertice> DFS(GrafoTPA g, String lbVOrigem) {
 		Vertice vertice = AlgoGrafo.getVertice(g, lbVOrigem);
-		//verificando se existe
+		// verificando se existe
 		if (vertice == null) {
 			System.out.println("Label n�o corresponde a um Vertice");
 			return null;
@@ -31,15 +31,15 @@ public class AlgoGrafo {
 		LinkedList<Vertice> visitados = new LinkedList<>();
 		LinkedList<Vertice> pilha = new LinkedList<>();
 		pilha.add(vertice);
-		
+
 		while (!pilha.isEmpty()) {
 			Vertice v = pilha.remove(pilha.size() - 1);
 			LinkedList<Vertice> adjacentes = g.adjacenteVertices(v);
-			//se ainda nao foi visitado... � visitado
+			// se ainda nao foi visitado... � visitado
 			if (!visitados.contains(v)) {
 				visitados.add(v);
 			}
-			//visitando adjacentes
+			// visitando adjacentes
 			for (Vertice adjacente : adjacentes) {
 				if (!visitados.contains(adjacente)) {
 					pilha.add(adjacente);
@@ -54,7 +54,7 @@ public class AlgoGrafo {
 	// busca em largura
 	public static LinkedList<Vertice> BFS(GrafoTPA g, String lbVOrigem) {
 		Vertice vertice = AlgoGrafo.getVertice(g, lbVOrigem);
-		
+
 		LinkedList<Vertice> visitados = new LinkedList<>();
 		LinkedList<Vertice> filas = new LinkedList<>();
 
@@ -80,12 +80,13 @@ public class AlgoGrafo {
 	}
 
 	// Algoritmo de Dijkstra
-	//public static LinkedList<Vertice> dijkstra(GrafoTPA g, Vertice lbVOrigem, Vertice lbVDestino) {
+	// public static LinkedList<Vertice> dijkstra(GrafoTPA g, Vertice lbVOrigem,
+	// Vertice lbVDestino) {
 	public static LinkedList<Vertice> dijkstra(GrafoTPA g, String lbVOrigem, String lbVDestino) {
 
 		Vertice vOrigem = AlgoGrafo.getVertice(g, lbVOrigem);
 		Vertice vDestino = AlgoGrafo.getVertice(g, lbVDestino);
-		
+
 		TabHEA pais = new TabHEA();
 		LinkedList<Vertice> menorCaminho = new LinkedList<Vertice>();
 		// Variavel que recebe os vertices pertencentes ao menor caminho
@@ -111,7 +112,7 @@ public class AlgoGrafo {
 			naoVisitados.add(v);
 		}
 		// ordenando os nao visitados pela distancia / dado
-		Collections.sort(naoVisitados);
+		AlgoGrafo.insertionSort(naoVisitados);
 
 		// O algoritmo continua ate que todos os vertices sejam visitados
 		while (!naoVisitados.isEmpty()) {
@@ -136,7 +137,7 @@ public class AlgoGrafo {
 					// distância = dado
 					// atual.getArestas().get(i).getPeso())) { //0 já que as
 					// arestas analisadas nao possuem peso
-					if(e.getDado() == null){
+					if (e.getDado() == null) {
 						e.setDado(1);
 					}
 					if (Integer.parseInt(vizinho.getDado() + "") > (Integer.parseInt(atual.getDado() + "")
@@ -171,7 +172,7 @@ public class AlgoGrafo {
 							}
 							// Ordena a lista do menor caminho, para que ele
 							// seja exibido da origem ao destino.
-							Collections.sort(menorCaminho);
+							AlgoGrafo.insertionSort(menorCaminho);
 
 						}
 					}
@@ -186,12 +187,24 @@ public class AlgoGrafo {
 			 * primeira posicao
 			 */
 
-			Collections.sort(naoVisitados);
+			AlgoGrafo.insertionSort(naoVisitados);
 			// System.out.println("Nao foram visitados ainda:" + naoVisitados);
 
 		}
 
 		return menorCaminho;
+	}
+
+	public static void insertionSort(LinkedList<Vertice> lstVertice) {
+		Vertice key;
+		int i;
+		for (int j = 1; j < lstVertice.size(); j++) {
+			key = lstVertice.get(j);
+			for (i = j - 1; (i >= 0) && (lstVertice.get(i).comparando(key) == 1); i--) {
+				lstVertice.set(i + 1, lstVertice.get(i));
+			}
+			lstVertice.set(i + 1, key);
+		}
 	}
 
 }
